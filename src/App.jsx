@@ -1,8 +1,8 @@
-export default function App() {
+import React from "react";
+import MainPage from "./pages/MainPage";
 
-    return (
-    <div>
-      <h1 className='text-9xl'>Hello Wolrd</h1>
-    </div>
+export default function App() {
+  return (
+    <MainPage />
   )
 }
