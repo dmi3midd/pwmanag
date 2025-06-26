@@ -9,8 +9,7 @@ export default function useNewPassword() {
         });
     }, []);
     const sendPassword = (password) => {
-        setAdding(true);
-        // window.electronAPI.sendPasswd({service: "google", login: "dmi3mid", password: "qwerty123"});
+        window.electronAPI.sendPasswd(password);
     }
 
     return {

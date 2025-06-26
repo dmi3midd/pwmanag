@@ -11,7 +11,7 @@ export default function useViewPasswords() {
     }, []);
     const sendRequestForData = () => {
         setView(true);
-        // window.electronAPI.requestForData('Sent request');
+        window.electronAPI.requestForData('Sent request');
     };
 
     return {

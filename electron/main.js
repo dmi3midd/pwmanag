@@ -4,7 +4,8 @@ import { fileURLToPath } from 'url';
 import { dirname } from 'path';
 import getData from './dbhadlers/getData.js';
 import setData from './dbhadlers/setData.js';
-import { data } from 'react-router-dom';
+import fileExists from './utils/fileExist.js';
+import fileCreate from './utils/fileCreate.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -29,18 +30,22 @@ function createWindow() {
   win.loadURL("http://localhost:5173");
 }
 
-app.whenReady().then(createWindow);
+app.whenReady().then(async () => {
+  if (!await fileExists('db.json')) {
+    console.log("file doesn't exist");
+    await fileCreate();
+  }
+  createWindow();
+});
+
 ipcMain.on('requestForData', async (event, req) => {
-  // Обробка повідомлення від фронтенду
   console.log('Request:', req);
-  let passwords = await getData(defaultData);
-  console.log(passwords);
-  // Відправка відповіді назад
+  let passwords = await getData();
   event.sender.send('onRequestForData', passwords);
 });
 
 ipcMain.on('sendPasswd', async (event, password) => {
   console.log("Get data:", password);
-  await setData(defaultData, password);
+  await setData(password);
   event.sender.send('onSentPasswd', true);
 });

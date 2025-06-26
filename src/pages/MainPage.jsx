@@ -20,7 +20,7 @@ export default function MainPage() {
 
     return (
         <div className="flex justify-evenly items-center h-screen bg-[#111010]">
-            <div onClick={sendPassword} className="flex flex-col items-center w-[170px] h-[170px] bg-[#0c0b0b] p-[15px] rounded-[10%] duration-200 hover:bg-[#161414]">
+            <div onClick={() => setAdding(true)} className="flex flex-col items-center w-[170px] h-[170px] bg-[#0c0b0b] p-[15px] rounded-[10%] duration-200 hover:bg-[#161414]">
                 <h2 className="text-[28px] text-[#414141] font-hubot">New password</h2>
                 <p><BookPlus color="#414141" size={28}/></p>
             </div>
@@ -33,10 +33,10 @@ export default function MainPage() {
                 <p><Settings color="#414141" size={28}/></p>
             </div>
             <Modal isVisible={isAdding} setVisible={setAdding}>
-                <ModalNewPassword />
+                <ModalNewPassword sendPassword={sendPassword} setAdding={setAdding}/>
             </Modal>
             <Modal isVisible={isView} setVisible={setView}>
-                <ModalViewPassword />
+                <ModalViewPassword passwords={passwords}/>
             </Modal>
         </div>
     )
