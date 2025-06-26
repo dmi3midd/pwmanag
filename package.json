@@ -5,24 +5,21 @@
   "type": "module",
   "main": "electron/main.js",
   "scripts": {
-    "dev:tail": "npx @tailwindcss/cli -i ./src/input.css -o ./src/index.css --watch",
     "dev:react": "vite",
     "dev:elec": "electron .",
     "build:react": "vite build",
-    "dist:linux": "npm run build && electron-builder --linux",
+    "build:elec": "electron-builder",
+    "dist:linux": "npm run build:react && electron-builder --linux",
     "dist:win": "npm run build && electron-builder --win",
     "lint": "eslint .",
     "preview": "vite preview"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.1.10",
-    "install": "^0.13.0",
-    "lodash": "^4.17.21",
-    "lowdb": "^7.0.1",
     "lucide-react": "^0.523.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
-    "react-router-dom": "^7.6.2"
+    "tailwindcss": "^4.1.11"
   },
   "devDependencies": {
     "@eslint/js": "^9.25.0",
@@ -35,8 +32,6 @@
     "eslint-plugin-react-hooks": "^5.2.0",
     "eslint-plugin-react-refresh": "^0.4.19",
     "globals": "^16.0.0",
-    "tailwind-scrollbar": "^4.0.2",
-    "tailwindcss": "^4.1.10",
     "vite": "^6.3.5"
   },
   "build": {
@@ -49,7 +44,9 @@
     "files": [
       "dist",
       "electron",
-      "package.json"
+      "package.json",
+      "!node_modules/@tailwindcss/oxide-wasm32-wasi",
+      "!node_modules/@emnapi/core"
     ],
     "win": {
       "target": "nsis"

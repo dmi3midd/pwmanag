@@ -6,10 +6,12 @@
 // }
 
 import fsPromises from 'fs/promises';
-
-export default async function getData() {
+import path from 'path';
+import {app} from 'electron';
+const dbPath = path.join(app.getPath('userData'), 'db.json');
+export default async function getData(path) {
     try {
-        const data = await fsPromises.readFile('db.json', {encoding: 'utf-8'});
+        const data = await fsPromises.readFile(dbPath, {encoding: 'utf-8'});
         const parsed = JSON.parse(data);
         if (!Array.isArray(parsed.passwords)) {
             throw new Error('"passwords" is not an array');
