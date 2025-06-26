@@ -4,12 +4,12 @@ export default function useNewPassword() {
     const [isAdding, setAdding] = useState(false);
 
     useEffect(() => {
-        window.electronAPI.onSentPasswd((data) => {
+        window.electronAPI.onSetPasswd((data) => {
             console.log(data);
         });
     }, []);
     const sendPassword = (password) => {
-        window.electronAPI.sendPasswd(password);
+        window.electronAPI.setPasswd(password);
     }
 
     return {

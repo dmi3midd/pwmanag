@@ -1,15 +1,14 @@
 import React from "react";
 import {Trash2, Pencil} from 'lucide-react';
 
-export default function Entry({entry}) {
-    
+export default function Entry({entry, setEditedPw, deletePassword}) {
     return (
         <div className="flex flex-col w-[380px] mb-[25px] p-[10px] rounded-[10px] bg-[#1c1d1f] transform transition duration-200 hover:translate-x-[10px]">
             <div className="flex justify-between pb-[5px] w-[40px]">
-                <p>
+                <p onClick={() => deletePassword(entry)}>
                     <Trash2 color="#555555" size={15}/>
                 </p>
-                <p>
+                <p onClick={() => setEditedPw(entry)}>
                     <Pencil color="#555555" size={15}/>
                 </p>
             </div>

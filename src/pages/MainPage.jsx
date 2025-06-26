@@ -12,9 +12,12 @@ export default function MainPage() {
         sendPassword,
     } = useNewPassword();
     const {
-        isView, setView,
         passwords, setPasswords,
+        isView, setView,
+        edidtedPw, setEditedPw,
         sendRequestForData,
+        sendEditedPassword,
+        deletePassword,
     } = useViewPasswords();
 
 
@@ -33,10 +36,19 @@ export default function MainPage() {
                 <p><Settings color="#555555" size={28}/></p>
             </div>
             <Modal isVisible={isAdding} setVisible={setAdding}>
-                <ModalNewPassword sendPassword={sendPassword} setAdding={setAdding}/>
+                <ModalNewPassword 
+                    sendPassword={sendPassword} 
+                    setAdding={setAdding}
+                />
             </Modal>
             <Modal isVisible={isView} setVisible={setView}>
-                <ModalViewPassword passwords={passwords}/>
+                <ModalViewPassword 
+                    passwords={passwords} 
+                    edidtedPw={edidtedPw} 
+                    setEditedPw={setEditedPw} 
+                    sendEditedPassword={sendEditedPassword}
+                    deletePassword={deletePassword}
+                />
             </Modal>
         </div>
     )

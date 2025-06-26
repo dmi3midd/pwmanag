@@ -1,4 +1,6 @@
 import React, {useState} from "react";
+import uniqid from 'uniqid';
+
 export default function ModalNewPassword({sendPassword, setAdding}) {
     const [service, setService] = useState("");
     const [password, setPassword] = useState("");
@@ -6,7 +8,7 @@ export default function ModalNewPassword({sendPassword, setAdding}) {
     const [extra, setExtra] = useState("");
 
     const addPassword = () => {
-        sendPassword({service: service, password: password, email: email, extra: extra});
+        sendPassword({id: uniqid("pw-"), service: service, password: password, email: email, extra: extra});
         setAdding(false);
     }
     return (
@@ -14,7 +16,7 @@ export default function ModalNewPassword({sendPassword, setAdding}) {
             <h1 className="flex justify-center text-[25px] text-[#555555]">New password</h1>
             <form onSubmit={addPassword} className="flex flex-col justify-evenly h-[100%]">
                 <div>
-                    <lable className="block text-[20px] text-[#555555]">Service</lable>
+                    <label className="block text-[20px] text-[#555555]">Service</label>
                     <input className="block w-[80%] h-[30px] p-[5px] rounded-[8px] border-2 border-[#555555] text-[#555555] text-[15px] duration-200 focus:scale-107"
                         type="text" 
                         placeholder="service" 
@@ -24,7 +26,7 @@ export default function ModalNewPassword({sendPassword, setAdding}) {
                     />
                 </div>
                 <div>
-                    <lable className="block text-[20px] text-[#555555]">Password</lable>
+                    <label className="block text-[20px] text-[#555555]">Password</label>
                     <input
                         className="block w-[80%] h-[30px] p-[5px] rounded-[8px] border-2 border-[#555555] text-[#555555] text-[15px] duration-200 focus:scale-107" 
                         type="text" 
@@ -35,7 +37,7 @@ export default function ModalNewPassword({sendPassword, setAdding}) {
                     />
                 </div>
                 <div>
-                    <lable className="block text-[20px] text-[#555555]">Email/login</lable>
+                    <label className="block text-[20px] text-[#555555]">Email/login</label>
                     <input 
                         className="block w-[80%] h-[30px] p-[5px] rounded-[8px] border-2 border-[#555555] text-[#555555] text-[15px] duration-200 focus:scale-107" 
                         placeholder="email or login" 
@@ -45,7 +47,7 @@ export default function ModalNewPassword({sendPassword, setAdding}) {
                     />
                 </div>
                 <div>
-                    <lable className="block text-[20px] text-[#555555]">Extra</lable>
+                    <label className="block text-[20px] text-[#555555]">Extra</label>
                     <input 
                         className="block w-[80%] h-[30px] p-[5px] rounded-[8px] border-2 border-[#555555] text-[#555555] text-[15px] duration-200 focus:scale-107" 
                         type="text" 

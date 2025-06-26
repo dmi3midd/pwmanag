@@ -7,12 +7,14 @@ const dbPath = path.join(app.getPath('userData'), 'db.json');
 export default async function writeData(password) {
     try {
         const passwords = await getData();
-        passwords.push(password);
-        await fsPromises.writeFile(dbPath, JSON.stringify({ passwords }));
+        const updatedPasswords = passwords.map(pw =>
+            password.id == pw.id ? password : pw
+        );
+        console.log(updatedPasswords);
+        await fsPromises.writeFile(dbPath, JSON.stringify({ passwords: updatedPasswords }));
         return true;
     } catch (error) {
         console.error(error.message);
         return false;
     }
 }
-

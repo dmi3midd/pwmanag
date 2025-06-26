@@ -4,6 +4,8 @@ import { fileURLToPath } from 'url';
 import { dirname } from 'path';
 import getData from './dbhadlers/getData.js';
 import setData from './dbhadlers/setData.js';
+import updateData from './dbhadlers/updateData.js';
+import deleteData from './dbhadlers/deleteData.js';
 import fileExists from './utils/fileExist.js';
 import fileCreate from './utils/fileCreate.js';
 
@@ -26,27 +28,39 @@ function createWindow() {
   });
   //prod
   //win.loadFile(path.join(__dirname, '../dist/index.html'));
-  console.log(dbPath);
+
   //development
   win.loadURL("http://localhost:5173");
 }
 
 app.whenReady().then(async () => {
-  if (!await fileExists(dbPath)) {
+  if (!await fileExists()) {
     console.log("file doesn't exist");
-    await fileCreate(dbPath);
+    await fileCreate();
   }
   createWindow();
 });
 
 ipcMain.on('requestForData', async (event, req) => {
   console.log('Request:', req);
-  let passwords = await getData(dbPath);
+  let passwords = await getData();
   event.sender.send('onRequestForData', passwords);
 });
 
-ipcMain.on('sendPasswd', async (event, password) => {
+ipcMain.on('setPasswd', async (event, password) => {
   console.log("Get data:", password);
-  await setData(dbPath, password);
-  event.sender.send('onSentPasswd', true);
+  await setData(password);
+  event.sender.send('onSetPasswd', true);
 });
+
+ipcMain.on('editPasswd', async (event, password) => {
+  console.log("Get data:", password);
+  await updateData(password);
+  event.sender.send('onEditPasswd', true);
+});
+
+ipcMain.on('deletePasswd', async (event, password) => {
+  console.log("Get data:", password);
+  await deleteData(password);
+  event.sender.send('onDeletePasswd', true);
+})
