@@ -18,6 +18,7 @@
     }
 
     body {
+        font-family: 'hubot', sans-serif;
         text-rendering: optimizeSpeed;
         background-color: #fff;
         color: #000;

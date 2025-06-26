@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React from "react";
 import {BookPlus, FileLock2, Settings} from 'lucide-react';
 import useNewPassword from "../hooks/useNewPassword";
 import useViewPasswords from "../hooks/useViewPassword";

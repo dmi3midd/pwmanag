@@ -10,10 +10,12 @@ export default function useViewPasswords() {
             setPasswords(data);
         });
         window.electronAPI.onEditPasswd((data) => {
-            console.log("Response from electron", data);
+            if (data) console.log("success")
+            else console.log("failure")
         });
         window.electronAPI.onDeletePasswd((data) => {
-            console.log("Response from electron", data);
+            if (data) console.log("success")
+            else console.log("failure")
         })
     }, []);
     const sendRequestForData = () => {

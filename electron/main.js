@@ -42,25 +42,21 @@ app.whenReady().then(async () => {
 });
 
 ipcMain.on('requestForData', async (event, req) => {
-  console.log('Request:', req);
   let passwords = await getData();
   event.sender.send('onRequestForData', passwords);
 });
 
 ipcMain.on('setPasswd', async (event, password) => {
-  console.log("Get data:", password);
-  await setData(password);
-  event.sender.send('onSetPasswd', true);
+  const result = await setData(password);
+  event.sender.send(result);
 });
 
 ipcMain.on('editPasswd', async (event, password) => {
-  console.log("Get data:", password);
-  await updateData(password);
-  event.sender.send('onEditPasswd', true);
+  const result = await updateData(password);
+  event.sender.send(result);
 });
 
 ipcMain.on('deletePasswd', async (event, password) => {
-  console.log("Get data:", password);
-  await deleteData(password);
-  event.sender.send('onDeletePasswd', true);
+  const result = await deleteData(password);
+  event.sender.send(result);
 })
