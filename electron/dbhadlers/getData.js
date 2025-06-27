@@ -15,7 +15,7 @@ export default async function getData(isForDbHandlers) {
             return parsed.passwords;
         }
         parsed.passwords.map((pw) => {
-            let decrypted = CryptoJS.AES.decrypt(pw.password, "sntrnm2823").toString(CryptoJS.enc.Utf8);
+            let decrypted = CryptoJS.AES.decrypt(pw.password, "secret key").toString(CryptoJS.enc.Utf8);
             pw.password = decrypted;
             return pw;
         });

@@ -3,10 +3,17 @@ import path from 'path';
 import {app} from 'electron';
 
 const dbPath = path.join(app.getPath('userData'), 'db.json');
-export default async function fileExists() {
+const configPath = path.join(app.getPath('userData'), 'config.json');
+export default async function fileExists(type) {
   try {
-    await fsPromises.access(dbPath);
-    return true;
+    if (type === 'db') {
+      await fsPromises.access(dbPath);
+      return true;
+    }
+    if (type === 'config') {
+      await fsPromises.access(configPath);
+      return true;
+    }
   } catch {
     return false;
   }

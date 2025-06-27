@@ -10,7 +10,7 @@ export default async function writeData(password) {
         let passwords = await getData(true);
         const updatedPasswords = passwords.map(pw => {
             if (password.id === pw.id) {
-                const encrypted = CryptoJS.AES.encrypt(password.password, "sntrnm2823").toString();
+                const encrypted = CryptoJS.AES.encrypt(password.password, "secret key").toString();
                 password.password = encrypted;
                 return password;
             }

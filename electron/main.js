@@ -2,17 +2,19 @@ import { app, BrowserWindow, ipcMain } from 'electron';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
+
+import getConfig from './confighandlers/getConfig.js';
+
 import getData from './dbhadlers/getData.js';
 import setData from './dbhadlers/setData.js';
 import updateData from './dbhadlers/updateData.js';
 import deleteData from './dbhadlers/deleteData.js';
+
 import fileExists from './utils/fileExist.js';
 import fileCreate from './utils/fileCreate.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
-const dbPath = path.join(app.getPath('userData'), 'db.json');
-//const configPath = path.join(app.getPath('userData'), 'config.json');
 
 function createWindow() {
   const win = new BrowserWindow({
@@ -34,15 +36,26 @@ function createWindow() {
 }
 
 app.whenReady().then(async () => {
-  if (!await fileExists()) {
-    console.log("file doesn't exist");
-    await fileCreate();
+  if (!await fileExists('db')) {
+    console.log("db doesn't exist");
+    await fileCreate('db');
+  }
+  if (!await fileExists('config')) {
+    console.log("config doesn't exist");
+    await fileCreate('config');
   }
   createWindow();
 });
 
+ipcMain.on('requestForConfig', async (event, req) => {
+  console.log(req);
+  const config = await getConfig();
+  event.sender.send('onRequestForConfig', config);
+  console.log(config);
+});
+
 ipcMain.on('requestForData', async (event, req) => {
-  console.log("Request");
+  console.log(req);
   let passwords = await getData(false);
   event.sender.send('onRequestForData', passwords);
 });
@@ -60,4 +73,5 @@ ipcMain.on('editPasswd', async (event, password) => {
 ipcMain.on('deletePasswd', async (event, password) => {
   const result = await deleteData(password);
   event.sender.send(result);
-})
+});
+

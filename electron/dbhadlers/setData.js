@@ -8,7 +8,7 @@ const dbPath = path.join(app.getPath('userData'), 'db.json');
 export default async function writeData(password) {
     try {
         let passwords = await getData(true);
-        const encrypted = CryptoJS.AES.encrypt(password.password, "sntrnm2823").toString();
+        const encrypted = CryptoJS.AES.encrypt(password.password, "secret key").toString();
         password.password = encrypted;
         passwords.push(password);
         await fsPromises.writeFile(dbPath, JSON.stringify({ passwords }));

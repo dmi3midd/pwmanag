@@ -12,4 +12,7 @@ contextBridge.exposeInMainWorld('electronAPI', {
 
   deletePasswd: (password) => ipcRenderer.send('deletePasswd', password),
   onDeletePasswd: (callback) => ipcRenderer.on('onDeletePasswd', (event, data) => callback(data)),
+
+  requestForConfig: (req) => ipcRenderer.send('requestForConfig', req),
+  onRequestForConfig: (callback) => ipcRenderer.on('onRequestForConfig', (event, data) => callback(data)),
 });
