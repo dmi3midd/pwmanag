@@ -18,7 +18,7 @@ const __dirname = dirname(__filename);
 
 function createWindow() {
   const win = new BrowserWindow({
-    maxWidth: 900,
+    maxWidth: 850,
     maxHeight: 700,
     title: "pwmanag",
     autoHideMenuBar: true,
