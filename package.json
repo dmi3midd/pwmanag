@@ -9,6 +9,7 @@
     "dev:elec": "electron .",
     "build:react": "vite build",
     "build:elec": "electron-builder",
+    "dist": "npm run build:react && electron-builder",
     "dist:linux": "npm run build:react && electron-builder --linux",
     "dist:win": "npm run build && electron-builder --win",
     "lint": "eslint .",

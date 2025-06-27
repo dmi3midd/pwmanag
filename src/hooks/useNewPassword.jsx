@@ -1,12 +1,11 @@
-import React, {useEffect,  useState} from 'react';
+import React, { useEffect, useState } from 'react';
 
 export default function useNewPassword() {
     const [isAdding, setAdding] = useState(false);
 
     useEffect(() => {
         window.electronAPI.onSetPasswd((data) => {
-            if (data) console.log("success");
-            else console.log("failure");
+            console.log("Try to set password", data);
         });
     }, []);
     const sendPassword = (password) => {

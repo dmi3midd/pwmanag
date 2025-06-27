@@ -2,7 +2,3 @@
 node_modules
 release
 dist
-
-#files
-db.json
-.env
