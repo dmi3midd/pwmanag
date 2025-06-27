@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {BookPlus, FileLock2, Settings} from 'lucide-react';
 import useNewPassword from "../hooks/useNewPassword";
 import useViewPasswords from "../hooks/useViewPassword";
@@ -20,6 +20,9 @@ export default function MainPage() {
         deletePassword,
     } = useViewPasswords();
 
+    // useEffect(() => {
+    //     sendRequestForData();
+    // }, []);
 
     return (
         <div className="flex justify-evenly items-center h-screen bg-[#1c1d1f]">
@@ -27,7 +30,7 @@ export default function MainPage() {
                 <h2 className="text-[28px] text-[#555555] font-hubot">New password</h2>
                 <p><BookPlus color="#555555" size={28}/></p>
             </div>
-            <div onClick={sendRequestForData} className="flex flex-col items-center w-[170px] h-[170px] bg-[#141313] p-[15px] rounded-[10%] transform transition duration-200 hover:translate-y-[-25px]">
+            <div onClick={() => setView(true)} className="flex flex-col items-center w-[170px] h-[170px] bg-[#141313] p-[15px] rounded-[10%] transform transition duration-200 hover:translate-y-[-25px]">
                 <h2 className="text-[28px] text-[#555555]">View passwords</h2>
                 <p><FileLock2 color="#555555" size={28}/></p>
             </div>

@@ -19,9 +19,12 @@ export default function useViewPasswords() {
         })
     }, []);
     const sendRequestForData = () => {
-        setView(true);
+        // setView(true);
         window.electronAPI.requestForData('Sent request');
     };
+    useEffect(() => {
+        sendRequestForData();
+    }, []);
 
 
     const sendEditedPassword = (editedPasswd) => {

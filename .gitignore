@@ -5,3 +5,4 @@ dist
 
 #files
 db.json
+.env

@@ -5,12 +5,13 @@ export default function useNewPassword() {
 
     useEffect(() => {
         window.electronAPI.onSetPasswd((data) => {
-            if (data) console.log("success")
-            else console.log("failure")
+            if (data) console.log("success");
+            else console.log("failure");
         });
     }, []);
     const sendPassword = (password) => {
         window.electronAPI.setPasswd(password);
+        window.location.reload();
     }
 
     return {

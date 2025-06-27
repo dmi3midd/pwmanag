@@ -6,7 +6,7 @@ import getData from './getData.js';
 const dbPath = path.join(app.getPath('userData'), 'db.json');
 export default async function deleteData(password) {
     try {
-        const passwords = await getData();
+        let passwords = await getData(true);
         for (let i = 0; i < passwords.length; i++) {
             if (passwords[i].id == password.id) {
                 passwords.splice(i, 1);

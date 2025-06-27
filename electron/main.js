@@ -42,7 +42,8 @@ app.whenReady().then(async () => {
 });
 
 ipcMain.on('requestForData', async (event, req) => {
-  let passwords = await getData();
+  console.log("Request");
+  let passwords = await getData(false);
   event.sender.send('onRequestForData', passwords);
 });
 
