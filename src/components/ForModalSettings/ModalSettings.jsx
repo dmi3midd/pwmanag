@@ -56,7 +56,7 @@ export default function ModalSettings({settings, updateConfig}) {
         <div style={{ background: settings.modalSettings.modalbg }} className="flex flex-col w-[440px] h-[450px] p-[20px] rounded-[20px] overflow-x-hidden overflow-y-auto gap-2">
             <h1 style={{ color: settings.modalSettings.text }} className="flex justify-center text-[25px]">Settings</h1>
             <form onSubmit={() => updateConfig(newconfig)}>
-                <div>
+                <div className="mb-[25px]">
                     <h2 
                         style={{ color: settings.modalSettings.text }} 
                         className="flex items-center justify-between w-[100px] text-[20px]">
@@ -67,7 +67,7 @@ export default function ModalSettings({settings, updateConfig}) {
                     <ColorEntry name="Main bg" color={gMainbg} setColor={setGMainbg} setIsChanged={setIsChanged} settings={settings}/>
                     <ColorEntry name="Item bg" color={gMainItembg} setColor={setGMainItembg} setIsChanged={setIsChanged} settings={settings}/>
                 </div>
-                <div>
+                <div className="mb-[25px]">
                     <h2
                         style={{ color: settings.modalSettings.text }} 
                         className="flex items-center justify-between w-[240px] text-[20px]">
@@ -80,7 +80,7 @@ export default function ModalSettings({settings, updateConfig}) {
                     <ColorEntry name="Button bg" color={nBtnbg} setColor={setNBtnbg} setIsChanged={setIsChanged} settings={settings}/>
                     <ColorEntry name="Button text" color={nBtntext} setColor={setNBtntext} setIsChanged={setIsChanged} settings={settings}/>
                 </div>
-                <div>
+                <div className="mb-[25px]">
                     <h2 
                         style={{ color: settings.modalSettings.text }} 
                         className="flex items-center justify-between w-[258px] text-[20px]">
@@ -92,7 +92,7 @@ export default function ModalSettings({settings, updateConfig}) {
                     <ColorEntry name="Entry bg" color={vEntrybg} setColor={setVEntrybg} setIsChanged={setIsChanged} settings={settings}/>
                     <ColorEntry name="Input border" color={vInputBorder} setColor={setVInputBorder} setIsChanged={setIsChanged} settings={settings}/>
                 </div>
-                <div>
+                <div className="mb-[25px]">
                     <h2 
                         style={{ color: settings.modalSettings.text }} 
                         className="flex items-center justify-between w-[105px] text-[20px]">

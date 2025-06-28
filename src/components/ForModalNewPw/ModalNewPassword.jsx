@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import uniqid from 'uniqid';
+import { nanoid } from 'nanoid'
 
 import InputBlockForNewPw from "./InputBlockForNewPw";
 
@@ -10,7 +10,7 @@ export default function ModalNewPassword({sendPassword, setAdding, settings}) {
     const [extra, setExtra] = useState("");
 
     const addPassword = () => {
-        sendPassword({id: uniqid("pw-"), service: service, password: password, email: email, extra: extra});
+        sendPassword({id: nanoid(), service: service, password: password, email: email, extra: extra});
         setAdding(false);
     }
 

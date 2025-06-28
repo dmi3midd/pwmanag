@@ -1,5 +1,6 @@
 import React from "react";
 import { BookPlus, FileLock2, Settings } from 'lucide-react';
+import Skeleton from '@mui/material/Skeleton';
 
 import useNewPassword from "../hooks/useNewPassword";
 import useViewPasswords from "../hooks/useViewPassword";
@@ -31,8 +32,28 @@ export default function MainPage() {
 
     if (!settings.general) {
         return (
-            <div>
-                <h2 className="text-[40px] text-[#555555] ">Loading...</h2>
+            <div className={`flex justify-evenly items-center h-screen bg-[#25252b]`}>
+                <Skeleton
+                    sx={{ bgcolor: 'grey.900' }}
+                    variant="rounded"
+                    width={170}
+                    height={170}
+                    animation="wave"
+                />
+                <Skeleton
+                    sx={{ bgcolor: 'grey.900' }}
+                    variant="rounded"
+                    width={170}
+                    height={170}
+                    animation="wave"
+                />
+                <Skeleton
+                    sx={{ bgcolor: 'grey.900' }}
+                    variant="rounded"
+                    width={170}
+                    height={170}
+                    animation="wave"
+                />
             </div>
         )
     }

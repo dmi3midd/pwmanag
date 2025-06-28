@@ -46,37 +46,42 @@ app.whenReady().then(async () => {
     await fileCreate('config');
   }
   createWindow();
+
+  ipcMain.on('requestForConfig', async (event, req) => {
+    console.log(req);
+    const config = await getConfig(false);
+    event.sender.send('onRequestForConfig', config);
+  });
+
+  ipcMain.on('requestForData', async (event, req) => {
+    console.log(req);
+    let passwords = await getData(false);
+    event.sender.send('onRequestForData', passwords);
+  });
+
+  ipcMain.on('setPasswd', async (event, password) => {
+    const result = await setData(password);
+    event.sender.send(result);
+  });
+
+  ipcMain.on('editPasswd', async (event, password) => {
+    const result = await updateData(password);
+    event.sender.send(result);
+  });
+
+  ipcMain.on('deletePasswd', async (event, password) => {
+    const result = await deleteData(password);
+    event.sender.send(result);
+  });
+
+  ipcMain.on('changeConfig', async (event, config) => {
+    const result = await setConfig(config);
+    event.sender.send(result);
+  });
 });
 
-ipcMain.on('requestForConfig', async (event, req) => {
-  console.log(req);
-  const config = await getConfig(false);
-  event.sender.send('onRequestForConfig', config);
-  console.log(config);
-});
-
-ipcMain.on('requestForData', async (event, req) => {
-  console.log(req);
-  let passwords = await getData(false);
-  event.sender.send('onRequestForData', passwords);
-});
-
-ipcMain.on('setPasswd', async (event, password) => {
-  const result = await setData(password);
-  event.sender.send(result);
-});
-
-ipcMain.on('editPasswd', async (event, password) => {
-  const result = await updateData(password);
-  event.sender.send(result);
-});
-
-ipcMain.on('deletePasswd', async (event, password) => {
-  const result = await deleteData(password);
-  event.sender.send(result);
-});
-
-ipcMain.on('changeConfig', async (event, config) => {
-  const result = await setConfig(config);
-  event.sender.send(result);
+app.on('window-all-closed', () => {
+  if (process.platform !== 'darwin') {
+    app.quit()
+  }
 });
