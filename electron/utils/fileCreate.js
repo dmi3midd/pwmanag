@@ -11,7 +11,7 @@ export default async function fileCreate(type) {
             return true;
         }
         if (type === 'config') {
-            await fsPromises.writeFile(configPath, JSON.stringify({
+            const defaultconfig = {
                 configuration: {
                     general: {
                         mainbg: "#1c1d1f",
@@ -20,22 +20,30 @@ export default async function fileCreate(type) {
                     },
                     modalNewPassword: {
                         text: "#555555",
-                        modalbg: "#0c0b0b", 
-                        inputborder: "#555555",                     
+                        modalbg: "#0c0b0b",
+                        inputborder: "#555555",
                         btnbg: "#1c1d1f",
                         btntext: "#555555"
                     },
                     modalViewPassword: {
                         text: "#555555",
                         modalbg: "#0c0b0b",
-                        entrybg: "#1c1d1f", 
+                        entrybg: "#1c1d1f",
                         inputborder: "#555555"
+                    },
+                    modalSettings: {
+                        text: "#555555",
+                        modalbg: "#0c0b0b",
+                        colortext: "#a7a9b4",
+                        colorbg: "#1e1e1e",
                     }
                 }
-            }));
+            }
+            await fsPromises.writeFile(configPath, JSON.stringify(defaultconfig));
             return true;
         }
     } catch (error) {
+        console.error(error.message);
         return false;
     }
 }

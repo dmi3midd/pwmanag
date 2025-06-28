@@ -26,6 +26,7 @@ export default function MainPage() {
     const {
         isSettings, setIsSettings,
         settings, setSettings,
+        updateConfig,
     } = useSettings();
 
     if (!settings.general) {
@@ -83,7 +84,7 @@ export default function MainPage() {
                 />
             </Modal>
             <Modal isVisible={isSettings} setVisible={setIsSettings}>
-                <ModalSettings settings={settings}/>
+                <ModalSettings settings={settings} updateConfig={updateConfig}/>
             </Modal>
         </div>
     )

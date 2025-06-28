@@ -15,4 +15,7 @@ contextBridge.exposeInMainWorld('electronAPI', {
 
   requestForConfig: (req) => ipcRenderer.send('requestForConfig', req),
   onRequestForConfig: (callback) => ipcRenderer.on('onRequestForConfig', (event, data) => callback(data)),
+
+  changeConfig: (config) => ipcRenderer.send('changeConfig', config),
+  onChangeConfig: (callback) => ipcRenderer.on('onChangeConfig', (event, data) => callback(data)),
 });

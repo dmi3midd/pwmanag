@@ -39,6 +39,7 @@ export default function useViewPasswords() {
         window.electronAPI.deletePasswd(deletedPasswd);
     }
 
+
     return {
         passwords, setPasswords,
         isView, setView,

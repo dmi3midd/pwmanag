@@ -4,6 +4,7 @@ import { fileURLToPath } from 'url';
 import { dirname } from 'path';
 
 import getConfig from './confighandlers/getConfig.js';
+import setConfig from './confighandlers/setConfig.js';
 
 import getData from './dbhadlers/getData.js';
 import setData from './dbhadlers/setData.js';
@@ -49,7 +50,7 @@ app.whenReady().then(async () => {
 
 ipcMain.on('requestForConfig', async (event, req) => {
   console.log(req);
-  const config = await getConfig();
+  const config = await getConfig(false);
   event.sender.send('onRequestForConfig', config);
   console.log(config);
 });
@@ -75,3 +76,7 @@ ipcMain.on('deletePasswd', async (event, password) => {
   event.sender.send(result);
 });
 
+ipcMain.on('changeConfig', async (event, config) => {
+  const result = await setConfig(config);
+  event.sender.send(result);
+});
