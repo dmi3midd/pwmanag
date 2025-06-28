@@ -1,7 +1,6 @@
 import fsPromises from 'fs/promises';
 import path from 'path';
 import {app} from 'electron';
-import { access } from 'fs';
 
 const dbPath = path.join(app.getPath('userData'), 'db.json');
 const configPath = path.join(app.getPath('userData'), 'config.json');
@@ -15,7 +14,9 @@ export default async function fileExists(type) {
       await fsPromises.access(configPath);
       return true;
     }
-  } catch {
+    return false;
+  } catch(error) {
+    console.error(error.message);
     return false;
   }
 }

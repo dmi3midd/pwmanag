@@ -42,6 +42,7 @@ export default async function fileCreate(type) {
             await fsPromises.writeFile(configPath, JSON.stringify(defaultconfig));
             return true;
         }
+        return false;
     } catch (error) {
         console.error(error.message);
         return false;

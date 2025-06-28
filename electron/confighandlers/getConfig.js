@@ -3,11 +3,10 @@ import path from 'path';
 import {app} from 'electron';
 
 const configPath = path.join(app.getPath('userData'), 'config.json');
-const defaultConfigPath = path.join(app.getPath('userData'), 'defaultconfig.json');
 export default async function getConfig() {
     try {
         const config = await fsPromises.readFile(configPath, { encoding: 'utf-8' });
-        const parsed = JSON.parse(config);
+        const parsed = JSON.parse(config);;
         return parsed.configuration;
     } catch (error) {
         console.error(error.message);
