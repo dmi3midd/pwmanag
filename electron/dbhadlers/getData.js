@@ -21,7 +21,7 @@ export default async function getData(isForDbHandlers) {
         });
         return parsed.passwords;
     } catch (error) {
-        console.error(error.message);
+        console.log(error.message);
         return [];
     }
 }

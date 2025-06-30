@@ -13,17 +13,17 @@ export default async function fileCreate(type) {
         if (type === 'config') {
             const defaultconfig = {
                 configuration: {
-                    general: {
+                    general: {                        
+                        text: "#555555",
                         mainbg: "#1c1d1f",
-                        mainitembg: "#141313",
-                        text: "#555555"
+                        mainitembg: "#141313"
                     },
                     modalNewPassword: {
                         text: "#555555",
                         modalbg: "#0c0b0b",
                         inputborder: "#555555",
-                        btnbg: "#1c1d1f",
-                        btntext: "#555555"
+                        btntext: "#555555",
+                        btnbg: "#1c1d1f"
                     },
                     modalViewPassword: {
                         text: "#555555",
@@ -35,7 +35,7 @@ export default async function fileCreate(type) {
                         text: "#555555",
                         modalbg: "#0c0b0b",
                         colortext: "#a7a9b4",
-                        colorbg: "#1e1e1e",
+                        colorbg: "#1e1e1e"
                     }
                 }
             }
@@ -44,7 +44,7 @@ export default async function fileCreate(type) {
         }
         return false;
     } catch (error) {
-        console.error(error.message);
+        console.log(error.message);
         return false;
     }
 }

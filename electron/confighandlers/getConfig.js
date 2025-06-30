@@ -9,7 +9,7 @@ export default async function getConfig() {
         const parsed = JSON.parse(config);;
         return parsed.configuration;
     } catch (error) {
-        console.error(error.message);
+        console.log(error.message);
         return {};
     }
 }

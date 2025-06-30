@@ -16,7 +16,7 @@ export default async function deleteData(password) {
         }
         return false;
     } catch (error) {
-        console.error(error.message);
+        console.log(error.message);
         return false;
     }
 }

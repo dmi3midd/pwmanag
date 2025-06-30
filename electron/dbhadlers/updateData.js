@@ -19,7 +19,7 @@ export default async function writeData(password) {
         await fsPromises.writeFile(dbPath, JSON.stringify({ passwords: updatedPasswords }));
         return true;
     } catch (error) {
-        console.error(error.message);
+        console.log(error.message);
         return false;
     }
 }

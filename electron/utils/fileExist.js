@@ -16,7 +16,7 @@ export default async function fileExists(type) {
     }
     return false;
   } catch(error) {
-    console.error(error.message);
+    console.log(error.message);
     return false;
   }
 }
